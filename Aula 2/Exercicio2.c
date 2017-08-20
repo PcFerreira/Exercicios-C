@@ -1,5 +1,5 @@
-/*Crie um algoritmo que leia dia, mês e ano, e indique se formam uma data
-válida.*/
+/*Crie um algoritmo que leia dia, mÃªs e ano, e indique se formam uma data
+vÃ¡lida.*/
 #include <stdio.h>
 #include <locale.h>
 //----------------------//
@@ -9,7 +9,7 @@ int main(){
 //----------------------//
 printf("Dia (DD):\n");
   scanf("%f", &dia);
-printf("Mês (MM):\n");
+printf("MÃªs (MM):\n");
   scanf("%f", &mes);
 printf("Ano (AAAA):\n");
   scanf("%f",&ano);
@@ -20,13 +20,14 @@ if (dia > 32) {
     printf("Dia Invalido!\n");
     }
       else if (mes > 12){
-        printf(" Mês Invalido!\n");
+        printf(" MÃªs Invalido!\n");
         }
         else if (mes < 0){
-          printf("Mês Invalido!");
+          printf("MÃªs Invalido!");
         }
         else if (mes == 02 && dia >= 29){
           printf("Data Invalida!");
         }
+  return 0;
 
 }
