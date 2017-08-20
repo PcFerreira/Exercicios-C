@@ -1,8 +1,8 @@
 /*Escreva uma calculadora em C, primeiramente deve-se perguntar qual a
-operaÁ„o que o usu·rio deseja utilizar (soma, subtraÁ„o, multiplicaÁ„o e
-divis„o) e depois o usu·rio deve inserir os dois n˙meros nos quais deseja
-aplicar a operaÁ„o, ent„o o sistema deve mostrar a resposta.*/
-#include "stdio.h"
+opera√ß√£o que o usu√°rio deseja utilizar (soma, subtra√ß√£o, multiplica√ß√£o e
+divis√£o) e depois o usu√°rio deve inserir os dois n√∫meros nos quais deseja
+aplicar a opera√ß√£o, ent√£o o sistema deve mostrar a resposta.*/
+#include <stdio.h>
 #include <locale.h>
 int main() {
   setlocale(LC_ALL,"Portuguese");
@@ -10,12 +10,12 @@ int main() {
   float n1,n2;
   //----------------------//
   printf("--------Calculadora---------\n");
-  printf("Qual OperaÁ„o vocÍ deseja realizar?\n");
+  printf("Qual Opera√ß√£o voc√™ deseja realizar?\n");
   printf("____________________________\n");
   printf("A: Soma +\n");
-  printf("B: SubtraÁ„o -\n");
-  printf("C: MultiplicaÁ„o *\n");
-  printf("D: Divis„o /\n");
+  printf("B: Subtra√ß√£o -\n");
+  printf("C: Multiplica√ß√£o *\n");
+  printf("D: Divis√£o /\n");
   printf("____________________________\n");
     scanf("%c", &menu);
     printf("Primeiro Numero:\n");
@@ -25,9 +25,9 @@ int main() {
     //----------------------//
     switch (menu) {
       case 'A':printf("Soma - Resultado: ");printf("%g",n1+n2 ); break;
-      case 'B':printf("SubtraÁ„o - Resultado: ");printf("%g",n1-n2); break;
-      case 'C':printf("MultiplicaÁ„o - Resultado "); printf("%g", n1*n2 ); break;
-      case 'D':printf("Divis„o - Resultado: ");printf("%g",n1/n2 );  break;
+      case 'B':printf("Subtra√ß√£o - Resultado: ");printf("%g",n1-n2); break;
+      case 'C':printf("Multiplica√ß√£o - Resultado "); printf("%g", n1*n2 ); break;
+      case 'D':printf("Divis√£o - Resultado: ");printf("%g",n1/n2 );  break;
       default: printf("Erro!"); break;
     //----------------------//
     return 0;
