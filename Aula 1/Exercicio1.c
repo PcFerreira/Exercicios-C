@@ -1,4 +1,4 @@
-/*Escreva um programa que lê dois inteiros e imprime a soma deles.*/
+/*Escreva um programa que lÃª dois inteiros e imprime a soma deles.*/
 #include <stdio.h>
 int main() {
   int x, y, z;
