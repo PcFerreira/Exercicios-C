@@ -24,9 +24,13 @@ int main (){
     for  (i = 0; i <20; i++){printf("%i\040",vetor1[i] );}
   printf("\n\n");
   printf("Pares:  \n\n");
-    for  (i = 0; i <20; i++){printf("%i\040",pares[i]);}
+    for  (i = 0; i <20; i++){if (pares[i] > 0) {
+      printf("%i\040",pares[i]);}
+    }
   printf("\n\n");
   printf("Impares:  \n\n");
-    for  (i = 0; i <20; i++){printf("%i\040",impares[i]);}
+    for  (i = 0; i <20; i++){if (impares[i] > 0) {
+      printf("%i\040",impares[i]);}
+    }
   return 0;
 }
