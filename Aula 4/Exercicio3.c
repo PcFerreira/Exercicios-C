@@ -12,5 +12,5 @@
           media = media + vetor[i];
         }
         printf("A media e: %i",media/4);
-
+          return 0;
   }
