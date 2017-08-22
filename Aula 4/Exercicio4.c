@@ -1,5 +1,5 @@
-//Desenvolva um sistema que leia 20 números inteiros e armazene-os em um vetor, depois separe e armazene os
-//números pares em um outro vetor chamado PARES e os números impares em um outro vetor chamado IMPARES.
+//Desenvolva um sistema que leia 20 nÃºmeros inteiros e armazene-os em um vetor, depois separe e armazene os
+//nÃºmeros pares em um outro vetor chamado PARES e os nÃºmeros impares em um outro vetor chamado IMPARES.
 //Imprima os vetores PARES e IMPARES.
 #include <stdio.h>
 int main (){
@@ -28,4 +28,5 @@ int main (){
   printf("\n\n");
   printf("Impares:  \n\n");
     for  (i = 0; i <20; i++){printf("%i\040",impares[i]);}
+  return 0;
 }
