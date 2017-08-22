@@ -1,6 +1,6 @@
-//Escreva um programa que pergunte ao usu·rio 10 n˙meros e armazene estes em um vetor. Em seguida, o
-//usu·rio pode digitar um n˙mero e seu programa deve acusar se o n˙mero digitado est· no vetor ou n„o. Se
-//estiver, diga a posiÁ„o que est·. O programa somente deve finalizar quando o usu·rio digitar -1.
+//Escreva um programa que pergunte ao usu√°rio 10 n√∫meros e armazene estes em um vetor. Em seguida, o
+//usu√°rio pode digitar um n√∫mero e seu programa deve acusar se o n√∫mero digitado est√° no vetor ou n√£o. Se
+//estiver, diga a posi√ß√£o que est√°. O programa somente deve finalizar quando o usu√°rio digitar -1.
 #include <stdio.h>
   int main (){
     int i = 0, vetor[10], comp = 0, chk = 0;
@@ -24,7 +24,7 @@
         }
       }
       if (chk == 10) {
-        printf("O numero nao esta presete no vetor\n");
+        printf("O numero nao esta presente no vetor\n");
       }
     }
       return 0;
