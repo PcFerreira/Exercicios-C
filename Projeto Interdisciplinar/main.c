@@ -5,11 +5,11 @@
     char telefone[15];
     char email[70];
     char cnpj[14];//14 digitos
-    char manutencao[1];
-    char criacao[1];
-    char lojav1[1];
-    char lojav2[1];
-    char seo[1];
+    char manutencao[2];
+    char criacao[2];
+    char lojav1[2];
+    char lojav2[2];
+    char seo[2];
   };
   /////////////////////////////////////////////////////////
   int chaves; //Variavel para armazenar a quantidade de linhas do arquivo dataKey
@@ -78,17 +78,22 @@
            break;
            printf("%s",fileOpenAUX2);
            printf("\nNome: %s\nTelefone: %s\nEmail: %s\nCNPJ: %s\nManutenção do site: %s\nCriação de Site: %s\nLoja virtual Simples: %s\nLoja virtual Avançada: %s\nSEO: %s",z.nome,z.telefone,z.email,z.cnpj,z.manutencao,z.criacao,z.lojav1,z.lojav2,z.seo);
-                 separador();
           setbuf(stdin, NULL);
         }
         fclose(data);
     }
+      separador();
     }
   }
   /////////////////////////////////////////////////////////
   void excluirPAdata(){
     char nomeArquivo[30];
     int excluirC,n;
+    if (fileC == 0) {
+      printf("0 Cadastros encontrados!\n");
+      separador();
+      return;
+    }
     abrirTodosArquivos();
     printf("Digite o codigo do Cadastro para excluir: ");
     scanf("%d",&excluirC);
@@ -102,6 +107,11 @@
     struct dados z;
     int editarC,opcao,n;
     char nomeArquivo2[30];
+    if (fileC == 0) {
+      printf("0 Cadastros encontrados!\n");
+      separador();
+      return;
+    }
     printf("Digite o codigo do Arquivo para editar: ");
     setbuf(stdin, NULL);
     scanf("%d",&editarC);
@@ -143,6 +153,7 @@
         printf("Digite o telefone(DDD+numero): ");///falta validação
         setbuf(stdin, NULL);
         scanf("%s",z.telefone);
+        printf("%s\n",z.email);
         MessageBox(0,"Telefone alterado com sucesso!","",0);
         fwrite(&z, sizeof(z),1,data);
         system("pause");
@@ -170,7 +181,7 @@
         break;
   /////////////////////////////////////////////////////////
         case 5:
-        printf("Manutenção do site? [S/N]: ");
+        printf("Manutenção do site? [s/n]: ");
         setbuf(stdin, NULL);
         scanf("%s",z.manutencao);
         MessageBox(0,"Manutenção alterado com sucesso!","",0);
@@ -180,7 +191,7 @@
         break;
   /////////////////////////////////////////////////////////
         case 6:
-        printf("Criação de Site? [S/N]: ");
+        printf("Criação de Site? [s/n]: ");
         setbuf(stdin, NULL);
         scanf("%s",z.criacao);
         MessageBox(0,"Criação alterado com sucesso!","",0);
@@ -190,7 +201,7 @@
         break;
   /////////////////////////////////////////////////////////
         case 7:
-        printf("Loja virtual Simples? [S/N]: ");
+        printf("Loja virtual Simples? [s/n]: ");
         setbuf(stdin, NULL);
           scanf("%s",z.lojav1);
         MessageBox(0,"Loja virtua simples alterado com sucesso!","",0);
@@ -200,7 +211,7 @@
         break;
   /////////////////////////////////////////////////////////
         case 8:
-        printf("Loja virtual Avançada? [S/N]: ");
+        printf("Loja virtual Avançada? [s/n]: ");
         setbuf(stdin, NULL);
           scanf("%s",z.lojav2);
         MessageBox(0,"Loja virtual avançada alterada com sucesso!","",0);
@@ -210,7 +221,7 @@
         break;
   /////////////////////////////////////////////////////////
         case 9:
-        printf("SEO? [S/N]: ");
+        printf("SEO? [s/n]: ");
         setbuf(stdin, NULL);
           scanf("%s",z.seo);
         MessageBox(0,"SEO alterado com sucesso!","",0);
@@ -237,7 +248,6 @@
   }
   /////////////////////////////////////////////////////////
   int main(){
-    //system("mode con:cols=50 lines=40");//alterar tamanho da janela do console
     setlocale(LC_ALL, "Portuguese");//Definir localização
     KeyCY(); //
     listarArquivosN();
@@ -246,16 +256,6 @@
     struct dados x;//dados para cadastro
     int opcao,n, i,code,len;
     char fileNameC[30];
-    char ver[4];
-    char nomeAUX[50];
-    char telefoneAUX[15];
-    char emailAUX[70];
-    char cnpjAUX[14];//14 digitos
-    char manutencaoAUX[1];
-    char criacaoAUX[1];
-    char lojav1AUX[1];
-    char lojav2AUX[1];
-    char seoAUX[1];
   /////////////////////////////////////////////////////////
     do {
       system("cls");
@@ -280,158 +280,32 @@
       printf("Cadastrar Nova Empresa: ");
       separador();
       printf("Nome da empresa: ");
-      scanf("%[^\n]s", nomeAUX);
-      while (nomeAUX[0] == '\0') {
-        setbuf(stdin, NULL);
-        printf("\nNão é Permitido Deixar Campos em Branco\n");
-        printf("Por Favor Insira um Nome.\n");
-        printf("Nome da empresa: ");
-        scanf("%[^\n]s", nomeAUX);
-      }
-      n=sprintf(x.nome, "%s", nomeAUX);
-      setbuf(stdin, NULL);
+      scanf("%[^\n]s", x.nome);
       separador();
-/////////////////////////////////////////////////////
-      printf("Digite o telefone(DDD+numero/sem espaços): \n");
-        scanf("%[^\n]s", telefoneAUX);
-        while (telefoneAUX[0] == '\0') {
-          setbuf(stdin, NULL);
-          printf("\nNão é Permitido Deixar Campos em Branco\n");
-          printf("Por Favor Insira um Telefone.\n");
-          printf("Digite o telefone(DDD+numero): \n");
-          scanf("%[^\n]s", telefoneAUX);
-        }
-        n=sprintf(x.telefone, "%s", telefoneAUX);
+      printf("Digite o telefone(DDD+numero): ");///falta validação
+        scanf("%s",x.telefone);
       separador();
-/////////////////////////////////////////////////////
-      setbuf(stdin, NULL);
       printf("Digite o Email: ");
-        scanf("%[^\n]s", emailAUX);
-        while (emailAUX[0] == '\0') {
-          setbuf(stdin, NULL);
-          printf("\nNão é Permitido Deixar Campos em Branco\n");
-          printf("Por Favor Insira um Email\n");
-          printf("Digite o Email: ");
-          scanf("%[^\n]s", emailAUX);
-        }
-        n=sprintf(x.email, "%s", emailAUX);
+        scanf("%s",x.email);
       separador();
-/////////////////////////////////////////////////////
-setbuf(stdin, NULL);
-printf("Digite o CNPJ(14 digitos): ");
-  scanf("%[^\n]s", cnpjAUX);
-  len = strlen(cnpjAUX);
-  setbuf(stdin, NULL);
-  while (len < 14) {
-    setbuf(stdin, NULL);
-    printf("Por Favor Insira um CNPJ valido!!\n");
-    printf("Digite o CNPJ(14 digitos): ");
-    scanf("%[^\n]s", cnpjAUX);
-    len = strlen(cnpjAUX);
-  }
-  n=sprintf(x.cnpj, "%s", cnpjAUX);
-separador();
-/////////////////////////////////////////////////////
-setbuf(stdin, NULL);
-printf("Manutenção do site? [S/N]: ");
-scanf("%s", manutencaoAUX);
-  while (manutencaoAUX[0] == '\0') {
-    setbuf(stdin, NULL);
-    printf("\nNão é Permitido Deixar Campos em Branco\n");
-    printf("Por Favor Insira S/N\n");
-    printf("Manutenção do site? [S/N]: ");
-    scanf("%s", manutencaoAUX);
-}
-setbuf(stdin, NULL);
-while ((manutencaoAUX[0] != 's') && (manutencaoAUX[0] != 'n')) {
-  setbuf(stdin, NULL);
-  printf("Por Favor Insira apenas S/N\n");
-  printf("Manutenção do site? [S/N]: ");
-  scanf("%s", manutencaoAUX);
-}
-n=sprintf(x.manutencao, "%s", manutencaoAUX);
-  separador();
-/////////////////////////////////////////////////////
-        setbuf(stdin, NULL);
-        printf("Criação de Site? [S/N]: ");
-        scanf("%s", criacaoAUX);
-          while (criacaoAUX[0] == '\0') {
-            setbuf(stdin, NULL);
-            printf("\nNão é Permitido Deixar Campos em Branco\n");
-            printf("Por Favor Insira S/N\n");
-            printf("Criação de Site? [S/N]: ");
-            scanf("%s", criacaoAUX);
-        }
-        setbuf(stdin, NULL);
-        while ((criacaoAUX[0] != 's') && (criacaoAUX[0] != 'n')) {
-          setbuf(stdin, NULL);
-          printf("Por Favor Insira apenas S/N\n");
-          printf("Criação de Site? [S/N]: ");
-          scanf("%s", criacaoAUX);
-        }
-        n=sprintf(x.criacao, "%s", criacaoAUX);
-          separador();
-/////////////////////////////////////////////////////
-        setbuf(stdin, NULL);
-        printf("Loja virtual Simples? [S/N]: ");
-        scanf("%s", lojav1AUX);
-          while (lojav1AUX[0] == '\0') {
-            setbuf(stdin, NULL);
-            printf("\nNão é Permitido Deixar Campos em Branco\n");
-            printf("Por Favor Insira S/N\n");
-            printf("Loja virtual Simples? [S/N]: ");
-            scanf("%s", lojav1AUX);
-        }
-        setbuf(stdin, NULL);
-        while ((lojav1AUX[0] != 's') && (lojav1AUX[0] != 'n')) {
-          setbuf(stdin, NULL);
-          printf("Por Favor Insira apenas S/N\n");
-          printf("Loja virtual Simples? [S/N]: ");
-          scanf("%s", lojav1AUX);
-        }
-        n=sprintf(x.lojav1, "%s", lojav1AUX);
-          separador();
-/////////////////////////////////////////////////////
-        setbuf(stdin, NULL);
-        printf("Loja virtual Avançada? [S/N]: ");
-        scanf("%s", lojav2AUX);
-          while (lojav2AUX[0] == '\0') {
-            setbuf(stdin, NULL);
-            printf("\nNão é Permitido Deixar Campos em Branco\n");
-            printf("Por Favor Insira S/N\n");
-            printf("Loja virtual Avançada? [S/N]: ");
-            scanf("%s", lojav2AUX);
-        }
-        setbuf(stdin, NULL);
-        while ((lojav2AUX[0] != 's') && (lojav2AUX[0] != 'n')) {
-          setbuf(stdin, NULL);
-          printf("Por Favor Insira apenas S/N\n");
-          printf("Loja virtual Avançada? [S/N]: ");
-          scanf("%s", lojav2AUX);
-        }
-        n=sprintf(x.lojav2, "%s", lojav2AUX);
-          separador();
-/////////////////////////////////////////////////////
-        setbuf(stdin, NULL);
-        printf("SEO? [S/N]: ");
-        scanf("%s", seoAUX);
-          while (seoAUX[0] == '\0') {
-            setbuf(stdin, NULL);
-            printf("\nNão é Permitido Deixar Campos em Branco\n");
-            printf("Por Favor Insira S/N\n");
-            printf("SEO? [S/N]: ");
-            scanf("%s", seoAUX);
-        }
-        setbuf(stdin, NULL);
-        while ((seoAUX[0] != 's') && (seoAUX[0] != 'n')) {
-          setbuf(stdin, NULL);
-          printf("Por Favor Insira apenas S/N\n");
-          printf("SEO? [S/N]: ");
-          scanf("%s", seoAUX);
-        }
-        n=sprintf(x.seo, "%s", seoAUX);
-          separador();
-/////////////////////////////////////////////////////
+      printf("Digite o CNPJ(14 digitos): ");///falta validação
+        scanf("%s",x.cnp;
+      separador();
+      printf("Manutenção do site? [s/n]: ");
+        scanf("%s",x.manutencao);
+      separador();
+      printf("Criação de Site? [s/n]: ");
+        scanf("%s",x.criacao);
+      separador();
+      printf("Loja virtual Simples? [s/n]: ");
+        scanf("%s",x.lojav1);
+      separador();
+      printf("Loja virtual Avançada? [s/n]: ");
+        scanf("%s",x.lojav2);
+      separador();
+      printf("SEO? [S/N]: ");
+        scanf("%s",x.seo);
+      separador();
       fwrite(&x, sizeof(x),1,data);
       fclose(data);
       data2=fopen("dataKey", "a");//abre o arquivo dataKey
