@@ -78,8 +78,9 @@ void menu2(){
 void infoS(){
   printalogo();
   separador();
-  printf("\nVersão 0.50\n");
+  printf("\nVersão 0.55\n");
   separador();
+  printf("*Validações Removidas.\n");
 }
 /////////////////////////////////////////////////////////
 

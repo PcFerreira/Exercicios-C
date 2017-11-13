@@ -1,15 +1,15 @@
-  #include"interface_menus.h"
+  #include"biblioteca_1.h"
   /////////////////////////////////////////////////////////
   struct dados{
     char nome[50];
     char telefone[15];
     char email[70];
-    char cnpj[14];//14 digitos
-    char manutencao[2];
-    char criacao[2];
-    char lojav1[2];
-    char lojav2[2];
-    char seo[2];
+    char cnpj[20];
+    char manutencao[3];
+    char criacao[3];
+    char lojav1[3];
+    char lojav2[3];
+    char seo[3];
   };
   /////////////////////////////////////////////////////////
   int chaves; //Variavel para armazenar a quantidade de linhas do arquivo dataKey
@@ -67,6 +67,7 @@
   char fileOpenAUX2[30];
   FILE *data;
     for (i = 1; i <= chaves; i++) {
+      setbuf(stdin, NULL);
     n=sprintf(fileOpenAUX, "data/Cadastro-%d", i);
       n=sprintf(fileOpenAUX2,"Cadastro : %d", i);
       if( access( fileOpenAUX, F_OK ) != -1 ) { //checa se o arquivo existe, se ele existir o abre
@@ -78,23 +79,23 @@
            break;
            printf("%s",fileOpenAUX2);
            printf("\nNome: %s\nTelefone: %s\nEmail: %s\nCNPJ: %s\nManutenção do site: %s\nCriação de Site: %s\nLoja virtual Simples: %s\nLoja virtual Avançada: %s\nSEO: %s",z.nome,z.telefone,z.email,z.cnpj,z.manutencao,z.criacao,z.lojav1,z.lojav2,z.seo);
+            separador();
           setbuf(stdin, NULL);
         }
         fclose(data);
     }
-      separador();
     }
   }
   /////////////////////////////////////////////////////////
   void excluirPAdata(){
     char nomeArquivo[30];
     int excluirC,n;
+    abrirTodosArquivos();
     if (fileC == 0) {
       printf("0 Cadastros encontrados!\n");
       separador();
       return;
     }
-    abrirTodosArquivos();
     printf("Digite o codigo do Cadastro para excluir: ");
     scanf("%d",&excluirC);
     n=sprintf(nomeArquivo, "data/Cadastro-%d", excluirC);
@@ -112,7 +113,7 @@
       separador();
       return;
     }
-    printf("Digite o codigo do Arquivo para editar: ");
+    printf("Digite o CODIGO do Cadastro para editar: ");
     setbuf(stdin, NULL);
     scanf("%d",&editarC);
     n=sprintf(nomeArquivo2, "data/Cadastro-%d", editarC);
@@ -122,16 +123,14 @@
       printalogo();
       separador();
       data=fopen(nomeArquivo2,"r+b");
+      setbuf(stdin, NULL);
       while(1){fread(&z,sizeof(z),1,data);
        if(feof(data)!=0)
         break;
          printf("\nNome: %s\nTelefone: %s\nEmail: %s\nCNPJ: %s\nManutenção do site: %s\nCriação de Site: %s\nLoja virtual Simples: %s\nLoja virtual Avançada: %s\nSEO: %s",z.nome,z.telefone,z.email,z.cnpj,z.manutencao,z.criacao,z.lojav1,z.lojav2,z.seo);
       }
-
-
   /////////////////////////////////////////////////////////
         rewind(data);
-  /////////////////////////////////////////////////////////
         menu2();
         separador();
         printf("Editar: ");
@@ -140,97 +139,86 @@
         switch (opcao) {
   /////////////////////////////////////////////////////////
         case 1:
-        printf("Nome da empresa: ");
         setbuf(stdin, NULL);
+        printf("Nome da empresa: ");
         scanf("%[^\n]s", z.nome);
         fwrite(&z, sizeof(z),1,data);
         MessageBox(0,"Nome alterado com sucesso!","",0);
-        system("pause");
-        system("cls");
         break;
   /////////////////////////////////////////////////////////
         case 2:
+        setbuf(stdin, NULL);
         printf("Digite o telefone(DDD+numero): ");///falta validação
         setbuf(stdin, NULL);
         scanf("%s",z.telefone);
-        printf("%s\n",z.email);
         MessageBox(0,"Telefone alterado com sucesso!","",0);
         fwrite(&z, sizeof(z),1,data);
-        system("pause");
-        system("cls");
         break;
   /////////////////////////////////////////////////////////
         case 3:
+        setbuf(stdin, NULL);
         printf("Digite o Email: ");
         setbuf(stdin, NULL);
         scanf("%s",z.email);
         MessageBox(0,"Email alterado com sucesso!","",0);
         fwrite(&z, sizeof(z),1,data);
-        system("pause");
-        system("cls");
         break;
   /////////////////////////////////////////////////////////
         case 4:
-        printf("Digite o CNPJ(14 digitos): ");///falta validação
+        setbuf(stdin, NULL);
+        printf("Digite o CNPJ: ");///falta validação
         setbuf(stdin, NULL);
         scanf("%s",z.cnpj);
         MessageBox(0,"CNPJ alterado com sucesso!","",0);
         fwrite(&z, sizeof(z),1,data);
-        system("pause");
-        system("cls");
         break;
   /////////////////////////////////////////////////////////
         case 5:
+        setbuf(stdin, NULL);
         printf("Manutenção do site? [s/n]: ");
         setbuf(stdin, NULL);
         scanf("%s",z.manutencao);
         MessageBox(0,"Manutenção alterado com sucesso!","",0);
         fwrite(&z, sizeof(z),1,data);
-        system("pause");
-        system("cls");
         break;
   /////////////////////////////////////////////////////////
         case 6:
+        setbuf(stdin, NULL);
         printf("Criação de Site? [s/n]: ");
         setbuf(stdin, NULL);
         scanf("%s",z.criacao);
         MessageBox(0,"Criação alterado com sucesso!","",0);
         fwrite(&z, sizeof(z),1,data);
-        system("pause");
-        system("cls");
         break;
   /////////////////////////////////////////////////////////
         case 7:
+        setbuf(stdin, NULL);
         printf("Loja virtual Simples? [s/n]: ");
         setbuf(stdin, NULL);
           scanf("%s",z.lojav1);
         MessageBox(0,"Loja virtua simples alterado com sucesso!","",0);
         fwrite(&z, sizeof(z),1,data);
-        system("pause");
-        system("cls");
         break;
   /////////////////////////////////////////////////////////
         case 8:
+        setbuf(stdin, NULL);
         printf("Loja virtual Avançada? [s/n]: ");
         setbuf(stdin, NULL);
           scanf("%s",z.lojav2);
         MessageBox(0,"Loja virtual avançada alterada com sucesso!","",0);
         fwrite(&z, sizeof(z),1,data);
-        system("pause");
-        system("cls");
         break;
   /////////////////////////////////////////////////////////
         case 9:
         printf("SEO? [s/n]: ");
         setbuf(stdin, NULL);
-          scanf("%s",z.seo);
+        scanf("%s",z.seo);
         MessageBox(0,"SEO alterado com sucesso!","",0);
         fwrite(&z, sizeof(z),1,data);
-        system("pause");
-        system("cls");
         break;
   /////////////////////////////////////////////////////////
         case 10:
+        setbuf(stdin, NULL);
         printf("Cancelado!\n");
         system("pause");
         break;
@@ -243,27 +231,217 @@
       }
         setbuf(stdin, NULL);
         fclose(data);
+        system("cls");
 
     } while(opcao != 10);
+  }
+  void cadastrar(){
+    FILE *data;
+    FILE *data2;
+    struct dados x;//dados para cadastro
+    int opcao,n, i,code,len;
+    char fileNameC[30];
+    char nomeAUX[50];
+    char telefoneAUX[15];
+    char emailA[70];
+    char cnpjAUX1[20];
+    char manutAUX1[2];
+    char criacaoAUX[2];
+    char lojav1AUX[2];
+    char lojav2AUX[2];
+    char seoAUX[2];
+    system("cls");
+    KeyCY();
+    listarArquivosN();
+    code = chaves+1; //Adiciona 1 a quantidade de linhas do arquivo datakey
+    n=sprintf(fileNameC, "data/Cadastro-%d", code); // gera um novo nome de arquivo para armazenar o proximo cadastro
+    printalogo();// exibe o logo(em biblioteca_1.h)
+    data=fopen(fileNameC, "wb");
+    separador();
+    setbuf(stdin, NULL);
+    printf("Cadastrar Nova Empresa: ");
+    separador();
+    printf("Nome da empresa: ");
+    scanf("%[^\n]s", nomeAUX);
+    while (nomeAUX[0] == '\0') {
+      setbuf(stdin, NULL);
+      printf("\nNão é Permitido Deixar Campos em Branco\n");
+      printf("Por Favor Insira um Nome.\n");
+      printf("Nome da empresa: ");
+      scanf("%[^\n]s", nomeAUX);
+    }
+    setbuf(stdin, NULL);
+    separador();
+/////////////////////////////////////////////////////
+        setbuf(stdin, NULL);
+        printf("Digite o CNPJ: ");
+        scanf("%s", cnpjAUX1);
+        len = strlen(cnpjAUX1);
+        setbuf(stdin, NULL);
+        while (len != 13) {
+          setbuf(stdin, NULL);
+          printf("Por Favor Insira um CNPJ valido!!\n");
+          printf("Digite o CNPJ: ");
+          scanf("%s", cnpjAUX1);
+          len = strlen(cnpjAUX1);
+        }
+        setbuf(stdin, NULL);
+        separador();
+/////////////////////////////////////////////////////
+    printf("Digite o telefone(DDD+numero/sem espaços): \n");
+      scanf("%[^\n]s", telefoneAUX);
+      while (telefoneAUX[0] == '\0') {
+        setbuf(stdin, NULL);
+        printf("\nNão é Permitido Deixar Campos em Branco\n");
+        printf("Por Favor Insira um Telefone.\n");
+        printf("Digite o telefone(DDD+numero): \n");
+        scanf("%[^\n]s", telefoneAUX);
+      }
+      setbuf(stdin, NULL);
+    separador();
+/////////////////////////////////////////////////////
+    setbuf(stdin, NULL);
+    printf("Digite o Email: ");
+    scanf("%[^\n]s", emailA);
+    n=sprintf(x.email, "%s", emailA);
+      while (emailA[0] == '\0') {
+        setbuf(stdin, NULL);
+        printf("\nNão é Permitido Deixar Campos em Branco\n");
+        printf("Por Favor Insira um Email\n");
+        printf("Digite o Email: ");
+        scanf("%s", emailA);
+      }
+      setbuf(stdin, NULL);
+      separador();
+/////////////////////////////////////////////////////
+      setbuf(stdin, NULL);
+      printf("Manutenção do site? [s/n]: ");
+      scanf("%s", manutAUX1);
+      while (manutAUX1[0] == '\0') {
+      setbuf(stdin, NULL);
+      printf("\nNão é Permitido Deixar Campos em Branco\n");
+      printf("Por Favor Insira apenas s/n\n");
+      printf("Manutenção do site? [s/n]: ");
+      scanf("%s", manutAUX1);
+      }
+      while ((manutAUX1[0] != 's') && (manutAUX1[0] != 'n')) {
+      setbuf(stdin, NULL);
+      printf("Por Favor Insira apenas s/n\n");
+      printf("Manutenção do site? [s/n]: ");
+      scanf("%s", manutAUX1);
+      }
+      separador();
+/////////////////////////////////////////////////////
+      setbuf(stdin, NULL);
+      printf("Criação de Site? [s/n]: ");
+      scanf("%s", criacaoAUX);
+        while (criacaoAUX[0] == '\0') {
+          setbuf(stdin, NULL);
+          printf("\nNão é Permitido Deixar Campos em Branco\n");
+          printf("Por Favor Insira apenas s/n\n");
+          printf("Criação de Site? [s/n]: ");
+          scanf("%s", criacaoAUX);
+      }
+      setbuf(stdin, NULL);
+      while ((criacaoAUX[0] != 's') && (criacaoAUX[0] != 'n')) {
+        setbuf(stdin, NULL);
+        printf("Por Favor Insira apenas s/n\n");
+        printf("Criação de Site? [s/n]: ");
+        scanf("%s", criacaoAUX);
+      }
+      setbuf(stdin, NULL);
+        separador();
+/////////////////////////////////////////////////////
+      setbuf(stdin, NULL);
+      printf("Loja virtual Simples? [s/n]: ");
+      scanf("%s", lojav1AUX);
+        while (lojav1AUX[0] == '\0') {
+          setbuf(stdin, NULL);
+          printf("\nNão é Permitido Deixar Campos em Branco\n");
+          printf("Por Favor Insira apenas s/n\n");
+          printf("Loja virtual Simples? [s/n]: ");
+          scanf("%s", lojav1AUX);
+      }
+      setbuf(stdin, NULL);
+      while ((lojav1AUX[0] != 's') && (lojav1AUX[0] != 'n')) {
+        setbuf(stdin, NULL);
+        printf("Por Favor Insira apenas s/n\n");
+        printf("Loja virtual Simples? [s/n]: ");
+        scanf("%s", lojav1AUX);
+      }
+      setbuf(stdin, NULL);
+        separador();
+/////////////////////////////////////////////////////
+      setbuf(stdin, NULL);
+      printf("Loja virtual Avançada? [s/n]: ");
+      scanf("%s", lojav2AUX);
+        while (lojav2AUX[0] == '\0') {
+          setbuf(stdin, NULL);
+          printf("\nNão é Permitido Deixar Campos em Branco\n");
+          printf("Por Favor Insira apenas s/n\n");
+          printf("Loja virtual Avançada? [s/n]: ");
+          scanf("%s", lojav2AUX);
+      }
+      setbuf(stdin, NULL);
+      while ((lojav2AUX[0] != 's') && (lojav2AUX[0] != 'n')) {
+        setbuf(stdin, NULL);
+        printf("Por Favor Insira apenas s/n\n");
+        printf("Loja virtual Avançada? [s/n]: ");
+        scanf("%s", lojav2AUX);
+      }
+      setbuf(stdin, NULL);
+        separador();
+/////////////////////////////////////////////////////
+      setbuf(stdin, NULL);
+      printf("SEO? [s/n]: ");
+      scanf("%s", seoAUX);
+        while (seoAUX[0] == '\0') {
+          setbuf(stdin, NULL);
+          printf("\nNão é Permitido Deixar Campos em Branco\n");
+          printf("Por Favor Insira apenas s/n\n");
+          printf("SEO? [s/n]: ");
+          scanf("%s", seoAUX);
+      }
+      setbuf(stdin, NULL);
+      while ((seoAUX[0] != 's') && (seoAUX[0] != 'n')) {
+        setbuf(stdin, NULL);
+        printf("Por Favor Insira apenas s/n\n");
+        printf("SEO? [s/n]: ");
+        scanf("%s", seoAUX);
+      }
+      setbuf(stdin, NULL);
+        separador();
+/////////////////////////////////////////////////////
+      n=sprintf(x.nome, "%s", nomeAUX);
+      n=sprintf(x.telefone, "%s", telefoneAUX);
+      n=sprintf(x.cnpj, "%s", cnpjAUX1);
+      n=sprintf(x.manutencao, "%s", manutAUX1);
+      n=sprintf(x.criacao, "%s", criacaoAUX);
+      n=sprintf(x.lojav1, "%s", lojav1AUX);
+      n=sprintf(x.lojav2, "%s", lojav2AUX);
+      n=sprintf(x.seo, "%s", seoAUX);
+    fwrite(&x, sizeof(x),1,data);
+    fclose(data);
+    data2=fopen("dataKey", "a");//abre o arquivo dataKey
+    KeyCX(code);//grava a proxima linha no arquivo dataKey
+    fclose(data2);
+    separador();
+    MessageBox(0,"Cadastro concluido com sucesso!!\n Ok para voltar.","",0);
+    chaves+1;
+    separador();
+    setbuf(stdin, NULL);
+    KeyCY();
   }
   /////////////////////////////////////////////////////////
   int main(){
     setlocale(LC_ALL, "Portuguese");//Definir localização
     KeyCY(); //
     listarArquivosN();
-    FILE *data;
-    FILE *data2;
-    struct dados x;//dados para cadastro
-    int opcao,n, i,code,len;
-    char fileNameC[30];
+    int opcao;
   /////////////////////////////////////////////////////////
     do {
       system("cls");
-      KeyCY();
-      listarArquivosN();
-      code = chaves+1; //Adiciona 1 a quantidade de linhas do arquivo datakey
-      n=sprintf(fileNameC, "data/Cadastro-%d", code); // gera um novo nome de arquivo para armazenar o proximo cadastro
-      printalogo();// exibe o logo(em biblioteca_1.h)
+      printalogo();
       separador();
       sep_menu_1();
       menu1(); //exibe as opcoes (em biblioteca_1.h)
@@ -273,50 +451,8 @@
   /////////////////////////////////////////////////////////
     switch (opcao) {
       case 1:
-      data=fopen(fileNameC, "wb");
       printalogo();
-      separador();
-      setbuf(stdin, NULL);
-      printf("Cadastrar Nova Empresa: ");
-      separador();
-      printf("Nome da empresa: ");
-      scanf("%[^\n]s", x.nome);
-      separador();
-      printf("Digite o telefone(DDD+numero): ");///falta validação
-        scanf("%s",x.telefone);
-      separador();
-      printf("Digite o Email: ");
-        scanf("%s",x.email);
-      separador();
-      printf("Digite o CNPJ(14 digitos): ");///falta validação
-        scanf("%s",x.cnp;
-      separador();
-      printf("Manutenção do site? [s/n]: ");
-        scanf("%s",x.manutencao);
-      separador();
-      printf("Criação de Site? [s/n]: ");
-        scanf("%s",x.criacao);
-      separador();
-      printf("Loja virtual Simples? [s/n]: ");
-        scanf("%s",x.lojav1);
-      separador();
-      printf("Loja virtual Avançada? [s/n]: ");
-        scanf("%s",x.lojav2);
-      separador();
-      printf("SEO? [S/N]: ");
-        scanf("%s",x.seo);
-      separador();
-      fwrite(&x, sizeof(x),1,data);
-      fclose(data);
-      data2=fopen("dataKey", "a");//abre o arquivo dataKey
-      KeyCX(code);//grava a proxima linha no arquivo dataKey
-      fclose(data2);
-      separador();
-      MessageBox(0,"Cadastro concluido com sucesso!!\n Ok para voltar.","",0);
-      chaves+1;
-      separador();
-      setbuf(stdin, NULL);
-      KeyCY();
+      cadastrar();
       system("cls");
       break;
   /////////////////////////////////////////////////////
@@ -327,9 +463,6 @@
       abrirTodosArquivos();
       setbuf(stdin, NULL);
       Editar();
-      printf("Teste");
-      system("pause");
-
       break;
   /////////////////////////////////////////////////////
       case 3:
@@ -375,7 +508,6 @@
   ////////////////////////////////////////////////////
       case 7:
       printf("\n\nSaindo...\n\n");
-      system("pause");
       exit(0);
       break;
   ////////////////////////////////////////////////////
